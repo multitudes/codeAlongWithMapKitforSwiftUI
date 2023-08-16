@@ -26,6 +26,12 @@ struct ContentView: View {
                     .cornerRadius(4)
             }
         }
+        .mapStyle(.standard(elevation: .realistic))
+        .safeAreaInset(edge: .leading) {
+            Text("hddd")
+                .frame(height: .infinity)
+                .background(.ultraThinMaterial)
+        }
     }
 }
 
