@@ -83,14 +83,13 @@ Here is the search function to be added in the struct as well.
         let request = MKLocalSearch.Request ()
         request.naturalLanguageQuery = query
         request.resultTypes = .pointOfInterest
-        request.region = visibleRegion ?? MKCoordinateRegion (
-            center: .parking,
+        request.region =  MKCoordinateRegion (
+            center: .start,
             span: MKCoordinateSpan (latitudeDelta: 0.0125, longitudeDelta: 0.0125))
         
         Task {
             let search = MKLocalSearch (request: request)
             let response = try? await search.start ()
             searchResults = response?.mapItems ?? []
-        }
     }
 ```
