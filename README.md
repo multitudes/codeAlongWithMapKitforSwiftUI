@@ -41,16 +41,16 @@ Image(systemName: "flag")
 }
 ```
 
-We can use the  .annotationTitles(.hidden) modifier to hide the title of the annotation if we wish.  Also, we can choose different kind of map styles.  
+We can use the  .annotationTitles(.hidden) modifier to hide the title of the annotation if we wish.  Also, we can choose different map styles.  
 I like `.mapStyle(.standard(elevation: .realistic))`
 
 ## Add buttons
 
 For the buttons I would like to use a translucent bar at the bottom of the full screen map. I will use a `safeareainset` with my buttons inside. The buttons will allow me to display a search for cafes and beaches.  
 
-lets make a new swiftUI file, call it MapButtonsView and add this code in its body 
+### The buttons
+Let's create a new swiftUI file; we call it MapButtonsView and add this code in its body.
 
-### the buttons
 ```swift
         HStack {
             Button {
@@ -73,7 +73,7 @@ lets make a new swiftUI file, call it MapButtonsView and add this code in its bo
 
 ```  
 NB: The icon would have different heights. I need t insert the frae modifier **before** to apply the `borderedProminent` button style or it will not changed observed!
-Pressing the button will trigger the search. The results will be stored in a searchResults variable. It will be a binding because we will pass the results to our parent view...
+Pressing a button will trigger the search. The results will be stored in a searchResults variable. It will be a binding because we will pass the results to our parent view...
 
 Here I will store my results:
 ```swift
@@ -98,7 +98,7 @@ Here is the search function to be added in the struct as well.
 
 Back in my contentView Ill add a @State property to store the search results.
 
-`	@State private var searchResults: [MKMapItem] = []`
+`@State private var searchResults: [MKMapItem] = []`
 
 I will add the buttons above the map at the bottom of the screen. I will use the `safeAreaInset` view for this.
 In my `Map()` content builder I add the buttons
@@ -125,7 +125,15 @@ ForEach(searchResults, id: \.self) { result in
 
 Try to press a button and see what happens. In Xcode 15 beta the previews are interactive.
 Notice how the map view get resized automatically to include our search results.  I think this is quite nice!
+The markers icons are out of the box the default ones provided by Apple Maps:  
+![results](screenshots/results.jpg)
 
-![results](results.jpg)
 
+### Relevant Links
+[The GitHub repo with the project](https://github.com/multitudes/codeAlongWithMapKitforSwiftUI)
 
+[WWDC23 - Meet MapKit for SwiftUI](https://developer.apple.com/videos/play/wwdc2023/10043/)
+
+[WWDC22 - What's new in MapKit](https://developer.apple.com/videos/play/wwdc2022/10035/)
+
+[MapKit docs](https://developer.apple.com/documentation/mapkit) [MapKit for SwiftUI docs](https://developer.apple.com/documentation/mapkit/mapkit_for_swiftui)
