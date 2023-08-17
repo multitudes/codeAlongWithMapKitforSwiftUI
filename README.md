@@ -3,7 +3,7 @@
 This is a code along project, the main branch has the starter project in Xcode, which is mostly empty. It should just only display a map of your region.  
 You can check the completedProject branch of the project for the finished version.
 
-# lets start
+# Let's start
 
 Xcode by default will show the map of the region you are in when building and showing the preview in the simulator. This is the standard behaviour when no parameters are passed in the map initializer.  
 
