@@ -13,6 +13,8 @@ extension CLLocationCoordinate2D {
 }
 
 struct ContentView: View {
+	@State private var searchResults: [MKMapItem] = []
+	
     var body: some View {
         Map {
             Annotation("Start",
@@ -25,12 +27,21 @@ struct ContentView: View {
                     .background(Color.indigo)
                     .cornerRadius(4)
             }
+			
+			ForEach(searchResults, id: \.self) { result in
+				Marker(item: result)
+					.annotationTitles(.hidden)
+			}
         }
         .mapStyle(.standard(elevation: .realistic))
-        .safeAreaInset(edge: .leading) {
-            Text("hddd")
-                .frame(height: .infinity)
-                .background(.ultraThinMaterial)
+        .safeAreaInset(edge: .bottom) {
+			HStack {
+				Spacer()
+				MapButtonView(searchResults: $searchResults)
+					.padding(.top)
+				Spacer()
+			}
+			.background(.thinMaterial)
         }
     }
 }

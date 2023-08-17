@@ -12,22 +12,24 @@ struct MapButtonView: View {
     @Binding var searchResults: [MKMapItem]
     
     var body: some View {
-        HStack {
+		HStack(spacing: 10) {
             Button {
                 search(for: "cafes")
-            } label: {
-                Label ("Cafes", systemImage: "cup.and.saucer.fill")
-            }
+			} label: {
+				Label ("Cafes", systemImage: "cup.and.saucer.fill")
+					.frame(width: 44, height: 44)
+			}
             .buttonStyle(.borderedProminent)
             
             Button {
                 search(for: "beach")
             } label: {
                 Label ("Beaches", systemImage: "beach.umbrella")
+					.frame(width: 44, height: 44)
             }
-            .buttonStyle(.borderedProminent)
+			.buttonStyle(.borderedProminent)
         }
-        .labelStyle (.iconOnly)
+        .labelStyle(.iconOnly)
     }
     
     func search(for query: String) {
