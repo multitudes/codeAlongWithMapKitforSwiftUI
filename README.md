@@ -57,6 +57,7 @@ lets make a new swiftUI file, call it MapButtonsView and add this code in its bo
                 search(for: "cafes")
             } label: {
                 Label ("Cafes", systemImage: "cup.and.saucer.fill")
+                .frame(width: 44, height: 44)
             }
             .buttonStyle(.borderedProminent)
             
@@ -64,13 +65,14 @@ lets make a new swiftUI file, call it MapButtonsView and add this code in its bo
                 search(for: "beach")
             } label: {
                 Label ("Beaches", systemImage: "beach.umbrella")
+                .frame(width: 44, height: 44)
             }
             .buttonStyle(.borderedProminent)
         }
         .labelStyle (.iconOnly)
 
 ```  
-
+NB: The icon would have different heights. I need t insert the frae modifier **before** to apply the `borderedProminent` button style or it will not changed observed!
 Pressing the button will trigger the search. The results will be stored in a searchResults variable. It will be a binding because we will pass the results to our parent view...
 
 Here I will store my results:
@@ -93,3 +95,37 @@ Here is the search function to be added in the struct as well.
             searchResults = response?.mapItems ?? []
     }
 ```
+
+Back in my contentView Ill add a @State property to store the search results.
+
+`	@State private var searchResults: [MKMapItem] = []`
+
+I will add the buttons above the map at the bottom of the screen. I will use the `safeAreaInset` view for this.
+In my `Map()` content builder I add the buttons
+
+```swift
+.safeAreaInset(edge: .bottom) {
+	HStack {
+		Spacer()
+		MapButtonView(searchResults: $searchResults)
+			.padding(.top)
+		Spacer()
+	}
+	.background(.thinMaterial)
+```
+
+Now that I get my search result when the user taps the button, I need to display it in the map. I add a `ForEach` in the content builder which will create the markers for each result:
+
+```swift
+ForEach(searchResults, id: \.self) { result in
+    Marker(item: result)
+}
+.annotationTitles(.hidden)
+```
+
+Try to press a button and see what happens. In Xcode 15 beta the previews are interactive.
+Notice how the map view get resized automatically to include our search results.  I think this is quite nice!
+The markers icons are out of the box the default ones provided by Apple Maps:  
+![results](screenshots/results.jpg)
+
+
