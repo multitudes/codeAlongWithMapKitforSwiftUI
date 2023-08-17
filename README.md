@@ -72,14 +72,15 @@ Let's create a new swiftUI file; we call it MapButtonsView and add this code in 
         .labelStyle (.iconOnly)
 
 ```  
-NB: The icon would have different heights. I need t insert the frae modifier **before** to apply the `borderedProminent` button style or it will not changed observed!
+NB: The label icons have different heights and it doesn't look so good when displayed next to each other. Adding a frame to the HStack would not solve the problem. I need to insert the frame modifier **before** to apply the `borderedProminent` button style or it will not change!  
+
 Pressing a button will trigger the search. The results will be stored in a searchResults variable. It will be a binding because we will pass the results to our parent view...
 
 Here I will store my results:
 ```swift
     @Binding var searchResults: [MKMapItem]
 ``` 
-Here is the search function to be added in the struct as well. 
+Here is the search function to be added in the struct. 
 ```
     func search(for query: String) {
         let request = MKLocalSearch.Request ()
