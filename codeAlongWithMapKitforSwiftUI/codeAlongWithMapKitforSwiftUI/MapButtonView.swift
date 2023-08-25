@@ -10,7 +10,8 @@ import SwiftUI
 
 struct MapButtonView: View {
     @Binding var searchResults: [MKMapItem]
-    
+	@Binding var position: MapCameraPosition
+	
     var body: some View {
 		HStack(spacing: 10) {
             Button {
@@ -28,6 +29,22 @@ struct MapButtonView: View {
 					.frame(width: 44, height: 44)
             }
 			.buttonStyle(.borderedProminent)
+			
+			Button {
+				position = .region(.étretat)
+			} label: {
+				Label("Honfleur", systemImage: "sun.dust.fill")
+					.frame(width: 44, height: 44)
+			}
+			.buttonStyle(.bordered)
+			
+			Button {
+				position = .region(.honfleur)
+			} label: {
+				Label("Honfleur", systemImage: "sailboat.fill")
+					.frame(width: 44, height: 44)
+			}
+			.buttonStyle(.bordered)
         }
         .labelStyle(.iconOnly)
     }
@@ -42,12 +59,12 @@ struct MapButtonView: View {
         
         Task {
             let search = MKLocalSearch (request: request)
-            let response = try? await search.start ()
+            let response = try? await search.start()
             searchResults = response?.mapItems ?? []
         }
     }
 }
 
 #Preview {
-    MapButtonView(searchResults: .constant([]))
+	MapButtonView(searchResults: .constant([]), position: .constant(.automatic))
 }
