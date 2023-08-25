@@ -24,6 +24,12 @@ extension MKCoordinateRegion {
 	)
 }
 
+extension MKMapRect {
+	// static let myRect = MKMapRect(...)
+}
+
+
+
 struct ContentView: View {
 	@State private var position: MapCameraPosition = .automatic
 	@State private var visibleRegion: MKCoordinateRegion?
@@ -41,6 +47,7 @@ struct ContentView: View {
                     .background(Color.indigo)
                     .cornerRadius(4)
             }
+			.annotationTitles(.hidden)
 			
 			ForEach(searchResults, id: \.self) { result in
 				Marker(item: result)

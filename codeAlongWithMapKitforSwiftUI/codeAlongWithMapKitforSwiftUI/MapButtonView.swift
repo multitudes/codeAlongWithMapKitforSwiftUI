@@ -45,6 +45,15 @@ struct MapButtonView: View {
 					.frame(width: 44, height: 44)
 			}
 			.buttonStyle(.bordered)
+			
+			Button {
+				position = .rect(.world)
+			} label: {
+				Label("world", systemImage: "globe")
+					.frame(width: 44, height: 44)
+			}
+			.buttonStyle(.bordered)
+			
         }
         .labelStyle(.iconOnly)
     }
