@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45424D132A9B4538003386A9 /* MapCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45424D122A9B4538003386A9 /* MapCameraView.swift */; };
 		457DA37F2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DA37E2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift */; };
 		457DA3812A8CECF100E4FF57 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DA3802A8CECF100E4FF57 /* ContentView.swift */; };
 		457DA3832A8CECF400E4FF57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 457DA3822A8CECF400E4FF57 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45424D122A9B4538003386A9 /* MapCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCameraView.swift; sourceTree = "<group>"; };
 		457DA37B2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeAlongWithMapKitforSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		457DA37E2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeAlongWithMapKitforSwiftUIApp.swift; sourceTree = "<group>"; };
 		457DA3802A8CECF100E4FF57 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				457DA37E2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift */,
 				457DA3802A8CECF100E4FF57 /* ContentView.swift */,
 				457DA38C2A8CFDFA00E4FF57 /* MapButtonView.swift */,
+				45424D122A9B4538003386A9 /* MapCameraView.swift */,
 				457DA3822A8CECF400E4FF57 /* Assets.xcassets */,
 				457DA3842A8CECF400E4FF57 /* Preview Content */,
 			);
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45424D132A9B4538003386A9 /* MapCameraView.swift in Sources */,
 				457DA3812A8CECF100E4FF57 /* ContentView.swift in Sources */,
 				457DA37F2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift in Sources */,
 				457DA38D2A8CFDFA00E4FF57 /* MapButtonView.swift in Sources */,

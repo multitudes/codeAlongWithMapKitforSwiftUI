@@ -8,6 +8,8 @@
 import MapKit
 import SwiftUI
 
+
+
 struct MapButtonView: View {
     @Binding var searchResults: [MKMapItem]
 	@Binding var position: MapCameraPosition
@@ -53,7 +55,6 @@ struct MapButtonView: View {
 					.frame(width: 44, height: 44)
 			}
 			.buttonStyle(.bordered)
-			
         }
         .labelStyle(.iconOnly)
     }
