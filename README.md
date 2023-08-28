@@ -1,5 +1,7 @@
 # Code Along Project With MapKit for SwiftUI
 
+Please see my  [blog](https://laurentbrusa.hashnode.dev/code-along-project-with-mapkit-for-swiftui-part-1) for the whole series :)
+
 This is a code along project, the main branch has the starter project in Xcode, which is mostly empty. It should just only display a map of your region.  
 You can check the completedProject branch of the project for the finished version.
 
