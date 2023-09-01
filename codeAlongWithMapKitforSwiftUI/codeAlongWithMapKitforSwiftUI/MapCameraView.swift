@@ -65,15 +65,16 @@ struct MapCameraView: View {
 				}
 				
 				Button("Reset params") {
-					
+					// to do
 				}
 			}
 			.frame(height: 280)
 			.background(.thinMaterial)
 		}
+		
 		.mapStyle(.standard(elevation: .realistic))
 		.onMapCameraChange {
-			// update params here if user changes the settings with his finger dire tly on the map
+			// update params here if user changes the settings with his finger directly on the map
 		}
 		.onChange(of: cameraParam) {
 			// update the position
