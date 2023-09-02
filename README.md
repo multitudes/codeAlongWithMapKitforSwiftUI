@@ -1,11 +1,24 @@
 # Code Along Project With MapKit for SwiftUI
 
-Please see my  [blog](https://laurentbrusa.hashnode.dev/code-along-project-with-mapkit-for-swiftui-part-1) for the whole series :)
+For iOS17 and Xcode 15 beta.
 
-This is a code along project, the main branch has the starter project in Xcode, which is mostly empty. It should just only display a map of your region.  
-You can check the completedProject branch of the project for the finished version.
+Exploring SwiftUI with MapKit can be quite fun.
 
-# Let's start
+In iOS 17 and macOS 14, MapKit has reached a new level with a few new additions for SwiftUI. Keep in mind that these views and modifiers are still in beta and are subject to change without notice.
+
+This brief series of posts draws inspiration from the WWDC23 talk: [WWDC23 - Meet MapKit for SwiftUI](https://developer.apple.com/videos/play/wwdc2023/10043/)
+
+This is a code-along project, the main branch has the starter project in Xcode, which is mostly empty. It should only display a map of your region.  
+You can check the 'completedProject' branch of the project on GitHub for the finished version: [The GitHub repo with the project](https://github.com/multitudes/codeAlongWithMapKitforSwiftUI)
+
+Previously:  
+[Part 1 - display default search results](https://laurentbrusa.hashnode.dev/code-along-project-with-mapkit-for-swiftui-part-1)  
+[Part 2 - Controlling the region being displayed](https://laurentbrusa.hashnode.dev/code-along-project-with-mapkit-for-swiftui-part-2)  
+[Part 3 - Rediscovering the map camera!](https://laurentbrusa.hashnode.dev/code-along-project-with-mapkit-for-swiftui-part-3)  
+
+The next episodes in this series will show how to display a route and how to integrate LookAround into your project.
+
+# Let's start with part 1
 
 Xcode by default will show the map of the region you are in when building and showing the preview in the simulator. This is the standard behaviour when no parameters are passed in the map initializer.  
 
@@ -131,6 +144,7 @@ Notice how the map view get resized automatically to include our search results.
 The markers icons are out of the box the default ones provided by Apple Maps:  
 ![results](screenshots/results.jpg)
 
+continues to part 2 in the link above...
 
 ### Relevant Links
 [The GitHub repo with the project](https://github.com/multitudes/codeAlongWithMapKitforSwiftUI)
