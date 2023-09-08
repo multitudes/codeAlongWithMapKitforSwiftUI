@@ -21,6 +21,10 @@ extension CLLocationCoordinate2D {
 		latitude: 48.8530,
 		longitude: 2.3499
 	)
+	static var museeOrsay = CLLocationCoordinate2D(
+		latitude: 48.859961,
+		longitude: 2.326583
+	)
 }
 
 extension MapCameraPosition {
