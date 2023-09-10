@@ -13,6 +13,7 @@ import SwiftUI
 struct MapButtonView: View {
     @Binding var searchResults: [MKMapItem]
 	@Binding var position: MapCameraPosition
+	var visibleRegion: MKCoordinateRegion?
 	
     var body: some View {
 		HStack(spacing: 10) {
@@ -48,13 +49,13 @@ struct MapButtonView: View {
 			}
 			.buttonStyle(.bordered)
 			
-			Button {
-				position = .rect(.world)
-			} label: {
-				Label("world", systemImage: "globe")
-					.frame(width: 44, height: 44)
-			}
-			.buttonStyle(.bordered)
+//			Button {
+//				position = .rect(.world)
+//			} label: {
+//				Label("world", systemImage: "globe")
+//					.frame(width: 44, height: 44)
+//			}
+//			.buttonStyle(.bordered)
         }
         .labelStyle(.iconOnly)
     }
@@ -63,7 +64,7 @@ struct MapButtonView: View {
         let request = MKLocalSearch.Request ()
         request.naturalLanguageQuery = query
         request.resultTypes = .pointOfInterest
-        request.region =  MKCoordinateRegion (
+        request.region =  visibleRegion ?? MKCoordinateRegion (
             center: .start,
             span: MKCoordinateSpan (latitudeDelta: 0.0125, longitudeDelta: 0.0125))
         

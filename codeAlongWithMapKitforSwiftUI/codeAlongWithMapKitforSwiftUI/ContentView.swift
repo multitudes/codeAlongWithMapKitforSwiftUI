@@ -32,7 +32,7 @@ extension MKMapRect {
 
 struct ContentView: View {
 	@State private var position: MapCameraPosition = .automatic
-	@State private var visibleRegion: MKCoordinateRegion?
+	@State private var visibleRegion: MKCoordinateRegion? = nil
 	@State private var searchResults: [MKMapItem] = []
 	
     var body: some View {
@@ -60,7 +60,8 @@ struct ContentView: View {
 				Spacer()
 				MapButtonView(
 					searchResults: $searchResults,
-					position: $position)
+					position: $position,
+					visibleRegion: visibleRegion)
 					.padding(.top)
 				Spacer()
 			}
