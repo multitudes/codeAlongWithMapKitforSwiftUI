@@ -34,9 +34,11 @@ struct ContentView: View {
 	@State private var position: MapCameraPosition = .automatic
 	@State private var visibleRegion: MKCoordinateRegion? = nil
 	@State private var searchResults: [MKMapItem] = []
+	@State private var selectedResult: MKMapItem?
+	@State private var route: MKRoute?
 	
     var body: some View {
-        Map(position: $position) {
+        Map(position: $position, selection: $selectedResult) {
             Annotation("Start",
                        coordinate: .start,
                        anchor: .bottom
@@ -53,16 +55,28 @@ struct ContentView: View {
 				Marker(item: result)
 					.annotationTitles(.hidden)
 			}
+			if let route {
+				MapPolyline(route)
+					.stroke(.blue, lineWidth: 5)
+			}
         }
         .mapStyle(.standard(elevation: .realistic))
         .safeAreaInset(edge: .bottom) {
 			HStack {
 				Spacer()
-				MapButtonView(
-					searchResults: $searchResults,
-					position: $position,
-					visibleRegion: visibleRegion)
+				VStack(spacing: 0) {
+						if let selectedResult {
+							ItemInfoView(selectedResult: selectedResult, route: route)
+								.frame(height: 128)
+								.clipShape(RoundedRectangle (cornerRadius: 10))
+								.padding([.top, .horizontal])
+						}
+					MapButtonView(
+						searchResults: $searchResults,
+						position: $position,
+						visibleRegion: visibleRegion)
 					.padding(.top)
+				}
 				Spacer()
 			}
 			.background(.thinMaterial)
@@ -70,10 +84,27 @@ struct ContentView: View {
 		.onChange(of: searchResults) {
 			position = .automatic
 		}
+		.onChange(of: selectedResult) {
+			getDirections()
+		}
 		.onMapCameraChange { context in
 			visibleRegion = context.region
 		}
     }
+
+	func getDirections() {
+		route = nil
+		guard let selectedResult else { return }
+		let request = MKDirections.Request()
+		request.source = MKMapItem(placemark: MKPlacemark(coordinate: .start))
+		request.destination = selectedResult
+		
+		Task {
+			let directions = MKDirections(request: request)
+			let response = try? await directions.calculate()
+			route = response?.routes.first
+		}
+	}
 }
 
 #Preview {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4508CA3B2AADDCDB0078B1C5 /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508CA3A2AADDCDB0078B1C5 /* ItemInfoView.swift */; };
 		452E19A42AA390BF00D1179F /* MapCameraAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E19A32AA390BF00D1179F /* MapCameraAnimationView.swift */; };
 		45424D132A9B4538003386A9 /* MapCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45424D122A9B4538003386A9 /* MapCameraView.swift */; };
 		457DA37F2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DA37E2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4508CA3A2AADDCDB0078B1C5 /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
 		452E19A32AA390BF00D1179F /* MapCameraAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCameraAnimationView.swift; sourceTree = "<group>"; };
 		45424D122A9B4538003386A9 /* MapCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCameraView.swift; sourceTree = "<group>"; };
 		457DA37B2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeAlongWithMapKitforSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 			children = (
 				457DA37E2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift */,
 				457DA3802A8CECF100E4FF57 /* ContentView.swift */,
+				4508CA3A2AADDCDB0078B1C5 /* ItemInfoView.swift */,
 				457DA38C2A8CFDFA00E4FF57 /* MapButtonView.swift */,
 				45424D122A9B4538003386A9 /* MapCameraView.swift */,
 				452E19A32AA390BF00D1179F /* MapCameraAnimationView.swift */,
@@ -151,6 +154,7 @@
 				457DA37F2A8CECF100E4FF57 /* codeAlongWithMapKitforSwiftUIApp.swift in Sources */,
 				452E19A42AA390BF00D1179F /* MapCameraAnimationView.swift in Sources */,
 				457DA38D2A8CFDFA00E4FF57 /* MapButtonView.swift in Sources */,
+				4508CA3B2AADDCDB0078B1C5 /* ItemInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
