@@ -13,7 +13,10 @@ struct CameraParam: Equatable {
 	var heading: Double
 	var pitch: Double
 	
-	static let defaults = CameraParam(distance: 980, heading: 242, pitch: 60)
+	static let defaults = CameraParam(
+		distance: 980,
+		heading: 242,
+		pitch: 60)
 }
 
 extension CLLocationCoordinate2D {
@@ -47,7 +50,6 @@ struct MapCameraView: View {
 		Map(position: $position) {
 			
 		}
-		.mapStyle(.standard)
 		.safeAreaInset(edge: .bottom) {
 			Form {
 				Section {
@@ -75,7 +77,6 @@ struct MapCameraView: View {
 			.frame(height: 280)
 			.background(.thinMaterial)
 		}
-		
 		.mapStyle(.standard(elevation: .realistic))
 		.onMapCameraChange {
 			// update params here if user changes the settings with his finger directly on the map
