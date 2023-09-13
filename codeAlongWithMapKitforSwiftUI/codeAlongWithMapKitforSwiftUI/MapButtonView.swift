@@ -36,7 +36,7 @@ struct MapButtonView: View {
 			Button {
 				position = .region(.étretat)
 			} label: {
-				Label("Honfleur", systemImage: "sun.dust.fill")
+				Label("Honfleur", systemImage: "1.circle.fill")
 					.frame(width: 44, height: 44)
 			}
 			.buttonStyle(.bordered)
@@ -44,7 +44,7 @@ struct MapButtonView: View {
 			Button {
 				position = .region(.honfleur)
 			} label: {
-				Label("Honfleur", systemImage: "sailboat.fill")
+				Label("Honfleur", systemImage: "2.circle.fill")
 					.frame(width: 44, height: 44)
 			}
 			.buttonStyle(.bordered)

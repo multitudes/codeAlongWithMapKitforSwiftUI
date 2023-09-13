@@ -9,7 +9,7 @@ import MapKit
 import SwiftUI
 
 extension CLLocationCoordinate2D {
-    static var start = CLLocationCoordinate2D(latitude: 49.44625973148958, longitude: 1.0889092507665954)
+	static var start = CLLocationCoordinate2D(latitude: 49.44625973148958, longitude: 1.0889092507665954)
 }
 
 extension MKCoordinateRegion {
@@ -37,61 +37,76 @@ struct ContentView: View {
 	@State private var selectedResult: MKMapItem?
 	@State private var route: MKRoute?
 	
-    var body: some View {
-        Map(position: $position, selection: $selectedResult) {
-            Annotation("Start",
-                       coordinate: .start,
-                       anchor: .bottom
-            ){
-                Image(systemName: "flag")
-                    .padding(4)
-                    .foregroundStyle(.white)
-                    .background(Color.indigo)
-                    .cornerRadius(4)
-            }
-			.annotationTitles(.hidden)
-			
-			ForEach(searchResults, id: \.self) { result in
-				Marker(item: result)
-					.annotationTitles(.hidden)
+	@State var pinLocation :CLLocationCoordinate2D? = nil
+	
+	var body: some View {
+		MapReader {  reader in
+			Map(position: $position, selection: $selectedResult) {
+				Annotation("Start",
+						   coordinate: .start,
+						   anchor: .bottom
+				){
+					Image(systemName: "flag")
+						.padding(4)
+						.foregroundStyle(.white)
+						.background(Color.indigo)
+						.cornerRadius(4)
+				}
+				.annotationTitles(.hidden)
+				
+				ForEach(searchResults, id: \.self) { result in
+					Marker(item: result)
+						.annotationTitles(.hidden)
+				}
+				if let route {
+					MapPolyline(route)
+						.stroke(.blue, lineWidth: 5)
+				}
+				if let pinLocation = pinLocation {
+					Marker("", coordinate: pinLocation)
+				}
 			}
-			if let route {
-				MapPolyline(route)
-					.stroke(.blue, lineWidth: 5)
-			}
-        }
-        .mapStyle(.standard(elevation: .realistic))
-        .safeAreaInset(edge: .bottom) {
-			HStack {
-				Spacer()
-				VStack(spacing: 0) {
+			.onTapGesture(perform: { screenCoord in
+				print("\(screenCoord.y)")
+				pinLocation = reader.convert(screenCoord, from: .local)
+				print("\(pinLocation?.latitude ?? 0.0)")
+				if let pinLocation = pinLocation {
+					selectedResult = MKMapItem(placemark: MKPlacemark(coordinate: pinLocation))
+				}
+			})
+			.mapStyle(.standard(elevation: .realistic))
+			.safeAreaInset(edge: .bottom) {
+				HStack {
+					Spacer()
+					VStack(spacing: 0) {
 						if let selectedResult {
 							ItemInfoView(selectedResult: selectedResult, route: route)
 								.frame(height: 128)
 								.clipShape(RoundedRectangle (cornerRadius: 10))
 								.padding([.top, .horizontal])
 						}
-					MapButtonView(
-						searchResults: $searchResults,
-						position: $position,
-						visibleRegion: visibleRegion)
-					.padding(.top)
+						MapButtonView(
+							searchResults: $searchResults,
+							position: $position,
+							visibleRegion: visibleRegion)
+						.padding(.top)
+					}
+					Spacer()
 				}
-				Spacer()
+				.background(.thinMaterial)
 			}
-			.background(.thinMaterial)
-        }
-		.onChange(of: searchResults) {
-			position = .automatic
+			.onChange(of: searchResults) {
+				position = .automatic
+			}
+			.onChange(of: selectedResult) {
+				getDirections()
+			}
+			.onMapCameraChange { context in
+				visibleRegion = context.region
+			}
 		}
-		.onChange(of: selectedResult) {
-			getDirections()
-		}
-		.onMapCameraChange { context in
-			visibleRegion = context.region
-		}
-    }
-
+	}
+	
 	func getDirections() {
 		route = nil
 		guard let selectedResult else { return }
@@ -108,5 +123,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+	ContentView()
 }
