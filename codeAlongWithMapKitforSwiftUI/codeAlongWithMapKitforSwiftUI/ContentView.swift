@@ -97,6 +97,10 @@ struct ContentView: View {
 			}
 			.onChange(of: searchResults) {
 				position = .automatic
+				route = nil
+				selectedResult = nil
+				pinLocation = nil
+				
 			}
 			.onChange(of: selectedResult) {
 				getDirections()
