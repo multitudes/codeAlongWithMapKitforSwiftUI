@@ -28,7 +28,15 @@ extension MKMapRect {
 	// static let myRect = MKMapRect(...)
 }
 
-
+extension TimeInterval {
+	var formattedToString: String {
+		let formatter = DateComponentsFormatter()
+		formatter.unitsStyle = .abbreviated
+		formatter.allowedUnits = [.hour, .minute]
+		
+		return formatter.string(from: self) ?? ""
+	}
+}
 
 struct ContentView: View {
 	@State private var position: MapCameraPosition = .automatic
@@ -36,7 +44,6 @@ struct ContentView: View {
 	@State private var searchResults: [MKMapItem] = []
 	@State private var selectedResult: MKMapItem?
 	@State private var route: MKRoute?
-	
 	@State var pinLocation :CLLocationCoordinate2D? = nil
 	
 	var body: some View {
@@ -62,14 +69,12 @@ struct ContentView: View {
 					MapPolyline(route)
 						.stroke(.blue, lineWidth: 5)
 				}
-				if let pinLocation = pinLocation {
-					Marker("", coordinate: pinLocation)
+				if let pinLocation {
+					Marker("New Marker", coordinate: pinLocation)
 				}
 			}
 			.onTapGesture(perform: { screenCoord in
-				print("\(screenCoord.y)")
 				pinLocation = reader.convert(screenCoord, from: .local)
-				print("\(pinLocation?.latitude ?? 0.0)")
 				if let pinLocation = pinLocation {
 					selectedResult = MKMapItem(placemark: MKPlacemark(coordinate: pinLocation))
 				}
@@ -79,12 +84,12 @@ struct ContentView: View {
 				HStack {
 					Spacer()
 					VStack(spacing: 0) {
-						if let selectedResult {
-							ItemInfoView(selectedResult: selectedResult, route: route)
-								.frame(height: 128)
-								.clipShape(RoundedRectangle (cornerRadius: 10))
-								.padding([.top, .horizontal])
-						}
+//						if let selectedResult {
+//							ItemInfoView(selectedResult: selectedResult, route: route)
+//								.frame(height: 128)
+//								.clipShape(RoundedRectangle (cornerRadius: 10))
+//								.padding([.top, .horizontal])
+//						}
 						MapButtonView(
 							searchResults: $searchResults,
 							position: $position,
@@ -100,7 +105,6 @@ struct ContentView: View {
 				route = nil
 				selectedResult = nil
 				pinLocation = nil
-				
 			}
 			.onChange(of: selectedResult) {
 				getDirections()
@@ -122,6 +126,7 @@ struct ContentView: View {
 			let directions = MKDirections(request: request)
 			let response = try? await directions.calculate()
 			route = response?.routes.first
+			print(route?.expectedTravelTime.formattedToString ?? "No route")
 		}
 	}
 }
