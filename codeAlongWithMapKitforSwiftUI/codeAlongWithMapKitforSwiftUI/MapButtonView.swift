@@ -33,21 +33,21 @@ struct MapButtonView: View {
             }
 			.buttonStyle(.borderedProminent)
 			
-			Button {
-				position = .region(.étretat)
-			} label: {
-				Label("Honfleur", systemImage: "sun.dust.fill")
-					.frame(width: 44, height: 44)
-			}
-			.buttonStyle(.bordered)
-			
-			Button {
-				position = .region(.honfleur)
-			} label: {
-				Label("Honfleur", systemImage: "sailboat.fill")
-					.frame(width: 44, height: 44)
-			}
-			.buttonStyle(.bordered)
+//			Button {
+//				position = .region(.étretat)
+//			} label: {
+//				Label("Honfleur", systemImage: "1.circle.fill")
+//					.frame(width: 44, height: 44)
+//			}
+//			.buttonStyle(.bordered)
+//			
+//			Button {
+//				position = .region(.honfleur)
+//			} label: {
+//				Label("Honfleur", systemImage: "2.circle.fill")
+//					.frame(width: 44, height: 44)
+//			}
+//			.buttonStyle(.bordered)
 			
 //			Button {
 //				position = .rect(.world)
@@ -66,10 +66,10 @@ struct MapButtonView: View {
         request.resultTypes = .pointOfInterest
         request.region =  visibleRegion ?? MKCoordinateRegion (
             center: .start,
-            span: MKCoordinateSpan (latitudeDelta: 0.0125, longitudeDelta: 0.0125))
+            span: MKCoordinateSpan (latitudeDelta: 0.000025, longitudeDelta: 0.000025))
         
         Task {
-            let search = MKLocalSearch (request: request)
+            let search = MKLocalSearch(request: request)
             let response = try? await search.start()
             searchResults = response?.mapItems ?? []
         }
