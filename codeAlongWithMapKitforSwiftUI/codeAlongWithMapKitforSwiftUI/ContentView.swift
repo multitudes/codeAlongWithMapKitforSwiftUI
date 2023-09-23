@@ -71,10 +71,12 @@ struct ContentView: View {
 							Marker(item: result)
 								.annotationTitles(.hidden)
 						}
+						
 						if let route {
 							MapPolyline(route)
 								.stroke(.blue, lineWidth: 5)
 						}
+						
 						if let pinLocation {
 							Marker("New Marker", coordinate: pinLocation)
 						}
